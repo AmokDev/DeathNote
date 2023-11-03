@@ -3,7 +3,9 @@ SpigotMC Plugin. This plugin adds a magic notebook to your game that can kill th
 
 # How to build?
 + Install [Maven](https://maven.apache.org/)
-+ git clone https://github.com/AmokDev/DeathNote.git
++ ```css
+  git clone https://github.com/AmokDev/DeathNote.git
+  ```
 + ```sh
   cd DeathNote
   ```
