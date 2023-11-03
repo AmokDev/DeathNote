@@ -6,7 +6,7 @@ import dev.amok.DeathNote.Initializers.CommandInit;
 import dev.amok.DeathNote.Initializers.EventInit;
 
 
-public class Plugin extends JavaPlugin { 
+public class Plugin extends JavaPlugin {
     public static JavaPlugin plugin;
     private static Plugin instance;
     
