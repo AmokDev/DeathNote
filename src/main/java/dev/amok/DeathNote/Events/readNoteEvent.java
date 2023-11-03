@@ -1,28 +1,19 @@
 package dev.amok.DeathNote.Events;
 
-import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
 import org.bukkit.event.player.PlayerEditBookEvent;
-import org.bukkit.inventory.ItemStack;
-// import org.bukkit.inventory.ItemStack;
-// import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
-// import org.bukkit.entity.EntityType;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Bukkit;
-// import org.bukkit.Sound;
 
 import dev.amok.DeathNote.Deaths;
 import dev.amok.DeathNote.Plugin;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.hover.content.Content;
 
 import java.util.Arrays;
 import java.util.List;
