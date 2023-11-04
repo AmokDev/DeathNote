@@ -6,7 +6,7 @@
 
   <groupId>dev.amokdev</groupId>
   <artifactId>DeathNote</artifactId>
-  <version>1.0.0b</version>
+  <version>1.0.0</version>
 
   <packaging>jar</packaging>
   <properties>
