@@ -28,8 +28,8 @@ public class kiraCommand implements CommandExecutor {
         ItemMeta red_glass_meta = red_glass.getItemMeta();
         ItemMeta black_glass_meta = black_glass.getItemMeta();
 
-        red_glass_meta.setDisplayName("");
-        black_glass_meta.setDisplayName("");
+        red_glass_meta.setDisplayName("§8*");
+        black_glass_meta.setDisplayName("§x*");
         
         red_glass.setItemMeta(red_glass_meta);
         black_glass.setItemMeta(black_glass_meta);

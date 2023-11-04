@@ -78,14 +78,13 @@ public class readNoteEvent implements Listener  {
                 ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
                 BookMeta bookMeta = (BookMeta) book.getItemMeta();
                 
-                // String page1 = meta.getPage(1);
+                String page1 = meta.getPage(1);
 
-                bookMeta.setTitle(meta.getDisplayName());
+                bookMeta.setTitle("kek");
                 bookMeta.setDisplayName(meta.getDisplayName());
                 bookMeta.setAuthor(s.getName());
                 bookMeta.setLore(Arrays.asList("kira"));
-
-                bookMeta.addPage("Any custom text");
+                bookMeta.addPage(page1);
 
                 book.setItemMeta(bookMeta);
 
@@ -97,8 +96,11 @@ public class readNoteEvent implements Listener  {
                             if (ss.getInventory().getItem(i) == null) {
                                 ;
                             } else if (s.getInventory().getItem(i).getType().equals(Material.WRITABLE_BOOK)) {
-                                Bukkit.getLogger().info(s.getInventory().getItem(i).getItemMeta().getLore().get(0));
-                                ss.getInventory().setItem(i, book);
+                                if (s.getInventory().getItem(i).getItemMeta().getLore() != null) {
+                                    if (s.getInventory().getItem(i).getItemMeta().getLore().get(0).equals("kira")) {
+                                        ss.getInventory().setItem(i, book);
+                                    }
+                                }
                             }
                         }
                     }
