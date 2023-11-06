@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.Bukkit;
 
 import dev.amok.DeathNote.Deaths;
@@ -27,9 +28,19 @@ public class readNoteEvent implements Listener  {
     public void readNote(PlayerEditBookEvent event) {
         BookMeta meta = event.getNewBookMeta();
         Player s = (Player) event.getPlayer();
+        FileConfiguration cfg = Plugin.getInstance().getConfig();
+
+        String tag = cfg.getString("_translation._other.tag");
+        String not_enough_rights = cfg.getString("_translation._events.write_victim.not_enough_rights");
+        String incorrect_input = cfg.getString("_translation._events.write_victim.incorrect_input");
+        String victim_offline = cfg.getString("_translation._events.write_victim.victim_offline");
+        String inaccessible_game_mode = cfg.getString("_translation._events.write_victim.inaccessible_game_mode");
+        String cant_find_a_way_of_death = cfg.getString("_translation._events.write_victim.cant_find_a_way_of_death");
+
+        String incorrect_input_text = "\n" + tag + " " + incorrect_input + "\n";
 
         if (s.hasPermission("deathnote.kira") == false) {
-            s.sendMessage("§7Death Note §8>> §7У Вас недостаточно прав для использования тетради смерти!");
+            s.sendMessage("\n" + tag + " " + not_enough_rights + "\n");
             return;
         }
         if (meta.hasLore()) {
@@ -40,30 +51,30 @@ public class readNoteEvent implements Listener  {
             String page_meta = page.get(0);
             try {
                 if (!page_meta.split(" ")[1].equals("by")) {
-                    s.sendMessage("§7Death Note §8>> §7Неправильный ввод! Пример - \"Name by lightning\"");
+                    s.sendMessage(incorrect_input_text);
                     return;
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                s.sendMessage("§7Death Note §8>> §7Неправильный ввод! Пример - \"Name by lightning\"");
+                s.sendMessage(incorrect_input_text);
                 return;
             }
             try {
                 name = page_meta.split(" by ")[0];
                 cause = page_meta.split(" by ")[1];
             } catch (ArrayIndexOutOfBoundsException e) {
-                s.sendMessage("§7Death Note §8>> §7Неправильный ввод! Пример - \"Name by lightning\"");
+                s.sendMessage(incorrect_input_text);
                 return;
             }
             Player v = (Player) Bukkit.getPlayerExact(name);
             try {
                 v.getArrowsInBody();
             } catch (Exception e) {
-                s.sendMessage("§7Death Note §8>> §7Ваша цель не в сети!");
+                s.sendMessage("\n" + tag + " " + victim_offline + "\n");
                 return;
             }
             if (ists.equals(eq)) {
                 if (v.getGameMode() != GameMode.SURVIVAL) {
-                    s.sendMessage("§7Death Note §8>> §7Игрок находится в недоступном для тетради режиме игры!");
+                    s.sendMessage("\n" + tag + " " + inaccessible_game_mode + "\n");
                     return;
                 }
                 if (cause.equals("lightning")) {
@@ -71,7 +82,7 @@ public class readNoteEvent implements Listener  {
                 } else if (cause.equals("guardian")) {
                     Deaths.Guardian(v);
                 } else {
-                    s.sendMessage("§7Death Note §8>> §7Не нашел подходящего способа смерти в своей копилке! Попробуйте найти что-то нужное по комманде /kills");
+                    s.sendMessage("\n" + tag + " " + cant_find_a_way_of_death + "\n");
                     return;
                 }
                 

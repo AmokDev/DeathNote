@@ -1,6 +1,6 @@
 main: dev.amok.DeathNote.Plugin
-name: deathnote
-version: 0.1
+name: DeathNote
+version: 1.0.1
 api-version: 1.16
 authors: [AmokDev]
 prefix: DeathNote
@@ -8,7 +8,7 @@ prefix: DeathNote
 commands:
   kira:
     permission: deathnote.kira
-    permission-message: §cХорошая попытка, L >:)
+    permission-message: §cNot enough rights! Try typing /help
     usage: /<command>
   kills:
     usage: /<command>

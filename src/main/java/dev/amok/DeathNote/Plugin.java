@@ -14,7 +14,7 @@ public class Plugin extends JavaPlugin {
     public void onEnable() {
         Plugin.plugin = this;
         instance = this;
-        this.saveDefaultConfig();
+        getLogger().info("Loading config...");
         CommandInit.init();
         EventInit.init();
         getLogger().info("Plugin started!");

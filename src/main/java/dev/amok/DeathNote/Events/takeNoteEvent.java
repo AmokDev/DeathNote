@@ -8,8 +8,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import dev.amok.DeathNote.Plugin;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.entity.Player;
 
@@ -19,18 +23,25 @@ public class takeNoteEvent implements Listener  {
     public void readNote(InventoryClickEvent event) {
         if (event.getWhoClicked() instanceof Player) {
             Player s = (Player) event.getWhoClicked();
+            FileConfiguration cfg = Plugin.getInstance().getConfig();
             ItemStack item = new ItemStack(Material.WRITABLE_BOOK);
             Inventory inv = s.getInventory();
             ItemMeta meta = item.getItemMeta();
-            meta.setDisplayName("§x§5§3§0§0§0§0§lD§x§3§8§1§9§1§9§le§x§2§9§2§9§2§9§la§x§2§c§2§c§2§c§lt§x§3§9§1§7§1§7§lh §x§4§2§0§0§0§0§lN§x§3§0§0§0§0§0§lo§x§2§b§1§2§1§2§lt§x§2§f§2§f§2§f§le");
+
+            String tag = cfg.getString("_translation._other.tag");
+            String book_name = cfg.getString("_translation._other.death_note_name");
+            String inv_name = cfg.getString("_translation._other.inventory_command_kira_name");
+            String death_note_picked_up = cfg.getString("_translation._events.give_death_note.death_note_picked_up");
+
+            meta.setDisplayName(book_name);
             meta.setLore(Arrays.asList("kira"));
             item.setItemMeta(meta);
             if (event.getClickedInventory() != null) {
-                if (event.getView().getTitle().equals("§x§4§b§0§0§0§0§lК§x§4§f§0§0§0§0§lи§x§3§8§0§0§0§0§lр§x§6§a§0§0§0§0§lа")) {
+                if (event.getView().getTitle().equals(inv_name)) {
                     if (event.isRightClick() || event.isLeftClick()) {
                         event.setCancelled(true);
                         inv.addItem(item);
-                        s.sendMessage("§7Death Note §8>> §7Вы подобрали тетрадь смерти!");
+                        s.sendMessage("\n" + tag + " " + death_note_picked_up + "\n");
                         s.closeInventory();
                     }
                 }
