@@ -37,10 +37,10 @@ public class readNoteEvent implements Listener  {
         String inaccessible_game_mode = cfg.getString("_translation._events.write_victim.inaccessible_game_mode");
         String cant_find_a_way_of_death = cfg.getString("_translation._events.write_victim.cant_find_a_way_of_death");
 
-        String incorrect_input_text = "\n" + tag + " " + incorrect_input + "\n";
+        String incorrect_input_text = "\n" + tag + " " + incorrect_input + "\n§7";
 
         if (s.hasPermission("deathnote.kira") == false) {
-            s.sendMessage("\n" + tag + " " + not_enough_rights + "\n");
+            s.sendMessage("\n" + tag + " " + not_enough_rights + "\n§7");
             return;
         }
         if (meta.hasLore()) {
@@ -69,12 +69,12 @@ public class readNoteEvent implements Listener  {
             try {
                 v.getArrowsInBody();
             } catch (Exception e) {
-                s.sendMessage("\n" + tag + " " + victim_offline + "\n");
+                s.sendMessage("\n" + tag + " " + victim_offline + "\n§7");
                 return;
             }
             if (ists.equals(eq)) {
                 if (v.getGameMode() != GameMode.SURVIVAL) {
-                    s.sendMessage("\n" + tag + " " + inaccessible_game_mode + "\n");
+                    s.sendMessage("\n" + tag + " " + inaccessible_game_mode + "\n§7");
                     return;
                 }
                 if (cause.equals("lightning")) {
@@ -82,7 +82,7 @@ public class readNoteEvent implements Listener  {
                 } else if (cause.equals("guardian")) {
                     Deaths.Guardian(v);
                 } else {
-                    s.sendMessage("\n" + tag + " " + cant_find_a_way_of_death + "\n");
+                    s.sendMessage("\n" + tag + " " + cant_find_a_way_of_death + "\n§7");
                     return;
                 }
                 

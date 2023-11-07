@@ -26,7 +26,7 @@ public class killsCommand implements CommandExecutor {
         }
 
         // Message
-        s.sendMessage("\n" + tag + " " + kills_txt);
+        s.sendMessage("\n" + tag + " " + kills_txt + "\n§7");
         return true;
     }
 

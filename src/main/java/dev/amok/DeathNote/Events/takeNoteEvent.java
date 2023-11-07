@@ -43,7 +43,7 @@ public class takeNoteEvent implements Listener  {
                     if (event.isRightClick() || event.isLeftClick()) {
                         event.setCancelled(true);
                         inv.addItem(item);
-                        s.sendMessage("\n" + tag + " " + death_note_picked_up + "\n");
+                        s.sendMessage("\n" + tag + " " + death_note_picked_up + "\n§7");
                         s.closeInventory();
                         long newdata = System.currentTimeMillis() / 1000 + kira_cooldown;
                         try {
