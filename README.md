@@ -17,7 +17,8 @@
   ```
 + The built plugin will be located in the `%PATH%/DeathNote/target` folder
 
-
+# License
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/AmokDev/DeathNote/blob/main/LICENSE) file for details.
 
 ## TODO:
 - [x] Add Multi-Language Support
