@@ -1,8 +1,9 @@
 main: dev.amok.DeathNote.Plugin
 name: DeathNote
-version: 1.0.1
+version: 1.0.2
 api-version: 1.16
 authors: [AmokDev]
+website: https://github.com/AmokDev
 prefix: DeathNote
 
 commands:

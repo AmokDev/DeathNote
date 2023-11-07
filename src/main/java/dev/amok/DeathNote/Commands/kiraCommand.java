@@ -5,6 +5,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+
+import java.sql.SQLException;
+
 import org.bukkit.Bukkit;
 
 import org.bukkit.inventory.Inventory;
@@ -13,6 +16,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import dev.amok.DeathNote.Plugin;
+import dev.amok.DeathNote.Utils;
+import dev.amok.DeathNote.Database.SQLite;
 
 public class kiraCommand implements CommandExecutor {
 
@@ -20,6 +25,45 @@ public class kiraCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
         Player s = (Player) sender;
         FileConfiguration cfg = Plugin.getInstance().getConfig();
+        String config_restarted = cfg.getString("_translation._other.config_restarted");
+        String tag = cfg.getString("_translation._other.tag");
+        if (alias.equalsIgnoreCase("kira")) {
+            if (args.length == 0) {
+                ;
+            } else if (args[0].equalsIgnoreCase("reload")) {
+                Plugin i = Plugin.getInstance();
+                i.reloadConfig();
+                s.sendMessage("");
+                s.sendMessage(tag + " " + config_restarted);
+                s.sendMessage("");
+                return true;
+            }
+        }
+
+        String wait_another = cfg.getString("_translation._commands.kira.wait_another");
+
+        try {
+            int isreg = SQLite.getPlayerIsRegistered(s.getName());
+            if (isreg == 0) {
+                try { SQLite.addPlayer(s.getName()); } catch (SQLException e) { e.printStackTrace(); }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            long unix_time_db = SQLite.getPlayerUnix(s.getName());
+            long unix_time_now = System.currentTimeMillis();
+            if (unix_time_db >= unix_time_now) {
+                long lolkek = unix_time_db - unix_time_now;
+                String what_time = Utils.displayTime(lolkek / 1000);
+                s.sendMessage("\n" + tag + " " + wait_another + " " + what_time + "\n§x");
+                return true;
+            }
+        } catch (SQLException e) {
+            ;
+        }
+
         int inventorySize = 9;
         String inventoryName = cfg.getString("_translation._other.inventory_command_kira_name");
         String book_name = cfg.getString("_translation._other.death_note_name");
@@ -54,6 +98,7 @@ public class kiraCommand implements CommandExecutor {
         inventory.setItem(7, black_glass);
         inventory.setItem(8, red_glass);
         s.openInventory(inventory);
+
         return true;
     }
 }
