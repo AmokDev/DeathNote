@@ -5,6 +5,13 @@ github: https://github.com/AmokDev/DeathNote
 # /kira Command Cooldown (In Seconds) | 1 hour is 3600 seconds | 1 minute is 60 seconds |
 kira_cooldown: 3600
 
+
+
+
+
+
+
+
 # Console Gradient Color Type
 _translation:
   _commands:
